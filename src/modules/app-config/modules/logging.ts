@@ -22,10 +22,12 @@ const getFormat = () => {
   switch (type) {
     case ConfigTypes.Console:
       format = winston.format.combine(
+        winston.format.timestamp({
+          format: 'HH:mm:ss.SSS',
+        }),
         winstonUtilities.format.nestLike(
           env.get('APP_NAME').default('PDF Filler').asString(),
         ),
-        winston.format.timestamp(),
         winston.format.colorize(),
       );
       break;

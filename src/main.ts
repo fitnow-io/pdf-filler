@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -15,6 +15,11 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
+  );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
   );
 
   const config: CommonConfigType = app.get(COMMON_CONFIG_KEY);

@@ -6,8 +6,12 @@ services:
     command: npm run start:debug
     volumes:
       - ./:/var/app
+      - ./google-key.json:/google/key.json
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /google/key.json
     ports:
       - 5000:5000
+      - 9229:9229
   redis:
     image: redis:6-alpine
     ports:
