@@ -12,6 +12,10 @@ services:
     ports:
       - 5000:5000
       - 9229:9229
+  converter:
+    image: thecodingmachine/gotenberg:6
+    ports:
+      - 5001:3000
   redis:
     image: redis:6-alpine
     ports:
