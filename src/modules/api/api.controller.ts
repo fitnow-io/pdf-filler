@@ -1,7 +1,9 @@
-import { Body, Controller, Header, Post } from '@nestjs/common';
+import { Body, Controller, Header, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerGuard } from 'src/guards';
 import { ApiService } from './api.service';
 import { FormatGoogleDocxDto } from './dto';
 
+@UseGuards(ApiBearerGuard)
 @Controller('api/v1')
 export class ApiController {
   constructor(private readonly apiService: ApiService) {}
