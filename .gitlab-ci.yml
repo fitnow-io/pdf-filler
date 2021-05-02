@@ -1,0 +1,15 @@
+stages:
+  - build
+
+default:
+  image: google/cloud-sdk:alpine
+  before_script:
+    - gcloud auth activate-service-account --key-file $K8S_DEPLOYER
+
+build:
+  stage: build
+  script:
+    - |
+      gcloud builds submit  \
+        --config=cloudbuild.yaml \q
+        --substitutions=_VERSION=$CI_COMMIT_REF_SLUG,_IMAGE=gcr.io/excellent-nexus-271309/pdf
