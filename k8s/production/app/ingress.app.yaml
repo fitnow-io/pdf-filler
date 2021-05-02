@@ -8,7 +8,7 @@ metadata:
   namespace: pdf-filler
 spec:
   rules:
-    - host: .fpdfitnow.io
+    - host: pdf.fitnow.io
       http:
         paths:
           - backend:
