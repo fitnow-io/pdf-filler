@@ -15,6 +15,7 @@ spec:
       labels:
         app: pdf-app
     spec:
+      serviceAccountName: pdf-service-account
       containers:
         - name: pdf-app
           image: gcr.io/excellent-nexus-271309/pdf
