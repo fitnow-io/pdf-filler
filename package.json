@@ -33,6 +33,7 @@
     "docx-templates": "^4.6.0",
     "docxtemplater": "^3.21.1",
     "env-var": "^7.0.0",
+    "fastify": "^3.14.0",
     "googleapis": "^73.0.0",
     "gotenberg-js-client": "^0.7.0",
     "nest-winston": "^1.4.2",

@@ -16,13 +16,9 @@ export class FormatterService {
     docId: string,
     data: Record<string, any>,
   ): Promise<Buffer> {
-    this.logger.info('Generate doc request');
     const doc = await this.googledDocsService.readDoc(docId);
-    this.logger.info('Read document');
     const preparedDoc = templateDocx(doc, data);
-    this.logger.info('Prepared document');
     const pdf = await this.converterService.docxToPdf(preparedDoc);
-    this.logger.info('Document converted');
     return pdf;
   }
 }

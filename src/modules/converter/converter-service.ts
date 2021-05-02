@@ -30,20 +30,19 @@ export class ConverterService {
       set(filename('result.pdf')),
       please,
     );
-    this.logger.info('Initialized converter with base utl', {
-      url: this.config.baseUrl,
-    });
     const pdf = await toPdf(['file.docx', file]);
+    this.logger.info('PDF Stream ready');
     return await this.streamToBuffer(pdf);
   }
 
   streamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
-    return new Promise<Buffer>((resolve) => {
+    return new Promise<Buffer>((resolve, reject) => {
       const data: Uint8Array[] = [];
       stream.on('data', (bytes) => data.push(bytes));
       stream.on('end', () => {
         resolve(Buffer.concat(data));
       });
+      stream.on('error', reject);
     });
   }
 }

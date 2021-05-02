@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ErrorsInterceptor } from 'src/common';
 import { ApiModule } from '../api/api.module';
 import { AppConfigModule } from '../app-config/app-config.module';
 import { AuthModule } from '../auth/auth.module';
@@ -16,6 +18,12 @@ import { AppService } from './app.service';
     ApiModule,
     AuthModule,
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ErrorsInterceptor,
+    },
+  ],
 })
 export class AppModule {}
