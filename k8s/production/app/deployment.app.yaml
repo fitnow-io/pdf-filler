@@ -18,5 +18,8 @@ spec:
       containers:
         - name: pdf-app
           image: gcr.io/excellent-nexus-271309/pdf
+          envFrom:
+            - configMapRef:
+                name: app-dotenv
           ports:
             - containerPort: 5000

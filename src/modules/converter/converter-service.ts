@@ -9,7 +9,6 @@ import {
   filename,
 } from 'gotenberg-js-client';
 import {
-  CloudConvertConfigType,
   GotenbergConfigType,
   GOTENBERG_CONFIG_KEY,
 } from '../app-config/modules';
