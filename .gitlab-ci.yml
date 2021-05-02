@@ -5,6 +5,7 @@ default:
   image: google/cloud-sdk:alpine
   before_script:
     - gcloud auth activate-service-account --key-file $K8S_DEPLOYER
+    - gcloud config set project $K8S_PROJECT_ID
 
 build:
   stage: build
