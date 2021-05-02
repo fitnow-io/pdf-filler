@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 default:
   image: google/cloud-sdk:alpine
@@ -14,3 +15,15 @@ build:
       gcloud builds submit  \
         --config=cloudbuild.yaml \
         --substitutions=_VERSION=$CI_COMMIT_REF_SLUG,_IMAGE=gcr.io/excellent-nexus-271309/pdf
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  dependencies:
+    - build
+  script:
+    - |
+      gcloud builds submit \
+        --config=clouddeploy.yaml
+        --substitutions=_VERSION=$CI_COMMIT_REF_SLUG,_IMAGE=gcr.io/excellent-nexus-271309/pdf,_ENV=production

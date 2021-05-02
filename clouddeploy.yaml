@@ -1,0 +1,9 @@
+steps:
+  - name: gcr.io/cloud-builders/gke-deploy
+    args:
+      - run
+      - --cluster=fitnow-cluster
+      - --filename=k8s/$_ENV/app
+      - --location=europe-west3-b
+      - --version=$_VERSION
+      - --image=$_IMAGE:$_VERSION
