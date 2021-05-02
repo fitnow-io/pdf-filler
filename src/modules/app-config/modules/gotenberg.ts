@@ -11,7 +11,7 @@ export const gotenberg = registerAs<ConfigFactory<GotenbergConfigType>>(
     baseUrl: env
       .get('GOTENBERG_BASE_URL')
       .default('http://gotenberg:3000')
-      .asUrlString(),
+      .asString(),
   }),
 );
 
