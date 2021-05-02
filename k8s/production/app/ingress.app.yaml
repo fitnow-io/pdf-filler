@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-issuer
+    kubernetes.io/ingress.class: nginx
+  name: pdf-api-ingress
+  namespace: pdf-filler
+spec:
+  rules:
+    - host: .fpdfitnow.io
+      http:
+        paths:
+          - backend:
+              serviceName: pdf-app
+              servicePort: 5000
+            path: /
+  tls:
+    - hosts:
+        - pdf.fitnow.io
+      secretName: pdf-production-cert
