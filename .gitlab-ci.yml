@@ -25,5 +25,5 @@ deploy:
   script:
     - |
       gcloud builds submit \
-        --config=clouddeploy.yaml
+        --config=clouddeploy.yaml \
         --substitutions=_VERSION=$CI_COMMIT_REF_SLUG,_IMAGE=gcr.io/excellent-nexus-271309/pdf,_ENV=production
