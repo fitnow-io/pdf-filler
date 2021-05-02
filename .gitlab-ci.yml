@@ -11,5 +11,5 @@ build:
   script:
     - |
       gcloud builds submit  \
-        --config=cloudbuild.yaml \q
+        --config=cloudbuild.yaml \
         --substitutions=_VERSION=$CI_COMMIT_REF_SLUG,_IMAGE=gcr.io/excellent-nexus-271309/pdf
