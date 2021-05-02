@@ -1,4 +1,8 @@
 steps:
+  # - name: docker
+  #   args:
+  #     - pull
+  #     - $_IMAGE:latest
   - name: docker
     args:
       - build
@@ -9,7 +13,7 @@ steps:
     args:
       - tag
       - $_IMAGE:$_VERSION
-      - latest
+      - $_IMAGE:latest
 images:
   - $_IMAGE:$_VERSION
   - $_IMAGE:latest
