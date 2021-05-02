@@ -8,6 +8,8 @@ steps:
       - build
       - -t
       - $_IMAGE:$_VERSION
+      - --cache-from
+      - $_IMAGE:latest
       - .
   - name: docker
     args:
