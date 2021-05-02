@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdf-app
+  namespace: pdf-filler
+  labels:
+    app: pdf-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdf-app
+  template:
+    metadata:
+      labels:
+        app: pdf-app
+    spec:
+      containers:
+        - name: pdf-app
+          image: gcr.io/excellent-nexus-271309/pdf
+          ports:
+            - containerPort: 5000

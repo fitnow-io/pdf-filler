@@ -1,8 +1,8 @@
 steps:
-  # - name: docker
-  #   args:
-  #     - pull
-  #     - $_IMAGE:latest
+  - name: docker
+    args:
+      - pull
+      - $_IMAGE:latest
   - name: docker
     args:
       - build

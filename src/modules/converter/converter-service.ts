@@ -10,19 +10,20 @@ import {
 } from 'gotenberg-js-client';
 import {
   CloudConvertConfigType,
-  CLOUD_CONVERT_CONFIG_KEY,
+  GotenbergConfigType,
+  GOTENBERG_CONFIG_KEY,
 } from '../app-config/modules';
 
 @Injectable()
 export class ConverterService {
   constructor(
-    @Inject(CLOUD_CONVERT_CONFIG_KEY)
-    private readonly config: CloudConvertConfigType,
+    @Inject(GOTENBERG_CONFIG_KEY)
+    private readonly config: GotenbergConfigType,
   ) {}
 
   async docxToPdf(file: Buffer): Promise<Buffer> {
     const toPdf = pipe(
-      gotenberg('http://converter:3000'),
+      gotenberg(this.config.baseUrl),
       convert,
       office,
       set(filename('result.pdf')),
