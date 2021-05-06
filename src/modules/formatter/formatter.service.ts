@@ -21,4 +21,13 @@ export class FormatterService {
     const pdf = await this.converterService.docxToPdf(preparedDoc);
     return pdf;
   }
+
+  async googleDocsToDocx(
+    docId: string,
+    data: Record<string, any>,
+  ): Promise<Buffer> {
+    const doc = await this.googledDocsService.readDoc(docId);
+    const preparedDoc = templateDocx(doc, data);
+    return preparedDoc;
+  }
 }
