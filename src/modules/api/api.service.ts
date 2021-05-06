@@ -11,7 +11,7 @@ export class ApiService {
   }
 
   async googleDocsToDocx(docId: string, data?: Record<string, any>) {
-    const doc = await this.formatterService.googleDocsToPdf(docId, data);
+    const doc = await this.formatterService.googleDocsToDocx(docId, data);
     return doc;
   }
 }
