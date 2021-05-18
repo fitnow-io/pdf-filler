@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, IsObject, IsOptional } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsObject,
+  IsOptional,
+  IsBoolean,
+} from 'class-validator';
 
 export class FormatGoogleDocxDto {
   @IsString()
@@ -8,4 +14,8 @@ export class FormatGoogleDocxDto {
   @IsObject()
   @IsOptional()
   data: Record<string, string | number>;
+
+  @IsBoolean()
+  @IsOptional()
+  extended?: boolean;
 }

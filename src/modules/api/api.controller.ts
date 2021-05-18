@@ -19,7 +19,11 @@ export class ApiController {
   @Header('Content-Type', 'application/pdf')
   @Header('Content-Disposition', 'attachment; filename="result.pdf"')
   googleDocsToPdf(@Body() body: FormatGoogleDocxDto) {
-    return this.apiService.googleDocsToPdf(body.docId, body.data);
+    return this.apiService.googleDocsToPdf(
+      body.docId,
+      body.data,
+      body.extended,
+    );
   }
 
   @Post('googledocs-to-docx')
@@ -29,6 +33,10 @@ export class ApiController {
   )
   @Header('Content-Disposition', 'attachment; filename="result.docx"')
   googleDocsToDocx(@Body() body: FormatGoogleDocxDto) {
-    return this.apiService.googleDocsToDocx(body.docId, body.data);
+    return this.apiService.googleDocsToDocx(
+      body.docId,
+      body.data,
+      body.extended,
+    );
   }
 }

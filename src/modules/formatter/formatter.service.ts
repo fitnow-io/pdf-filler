@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { templateDocx } from 'src/utils';
+import { templateDocx, templateDocxExtended } from 'src/utils';
 import { ConverterService } from '../converter/converter-service';
 import { GoogleDocsService } from '../google-docs/google-docs.service';
 import { AppLogger } from '../logger/app-logger.service';
@@ -15,9 +15,13 @@ export class FormatterService {
   async googleDocsToPdf(
     docId: string,
     data: Record<string, any>,
+    extended = false,
   ): Promise<Buffer> {
     const doc = await this.googledDocsService.readDoc(docId);
-    const preparedDoc = templateDocx(doc, data);
+    let preparedDoc = templateDocx(doc, data);
+    if (extended) {
+      preparedDoc = await templateDocxExtended(preparedDoc, data);
+    }
     const pdf = await this.converterService.docxToPdf(preparedDoc);
     return pdf;
   }
@@ -25,9 +29,13 @@ export class FormatterService {
   async googleDocsToDocx(
     docId: string,
     data: Record<string, any>,
+    extended = false,
   ): Promise<Buffer> {
     const doc = await this.googledDocsService.readDoc(docId);
-    const preparedDoc = templateDocx(doc, data);
+    let preparedDoc = templateDocx(doc, data);
+    if (extended) {
+      preparedDoc = await templateDocxExtended(preparedDoc, data);
+    }
     return preparedDoc;
   }
 }
