@@ -27,10 +27,10 @@ export const templateDocxExtended = async (
     template,
     data,
     additionalJsContext: {
-      qrCode: async (url: string) => {
+      qrCode: async (url: string, size = 2) => {
         const dataUrl = await generateQr(url, 500);
         const data = dataUrl.slice('data:image/gif;base64,'.length);
-        return { width: 6, height: 6, data, extension: '.gif' };
+        return { width: size, height: size, data, extension: '.gif' };
       },
     },
   });
