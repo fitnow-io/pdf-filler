@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { templateDocx, templateDocxExtended } from 'src/utils';
 import { ConverterService } from '../converter/converter-service';
 import { GoogleDocsService } from '../google-docs/google-docs.service';
@@ -28,6 +29,18 @@ export class FormatterService {
     }
     const pdf = await this.converterService.docxToPdf(preparedDoc);
     return pdf;
+  }
+
+  async urlToPdf(
+    url: string,
+    context: Record<string, any>,
+    extended = false,
+  ): Promise<Buffer> {
+    const { data } = await axios.get<ArrayBuffer>(url, {
+      responseType: 'arraybuffer',
+    });
+    const buffer = Buffer.from(data);
+    return this.bufferToPdf(buffer, context, extended);
   }
 
   async bufferToPdf(

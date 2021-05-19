@@ -5,6 +5,11 @@ import { FormatterService } from '../formatter/formatter.service';
 export class ApiService {
   constructor(private readonly formatterService: FormatterService) {}
 
+  async urlToPdf(url: string, data?: Record<string, any>, extended = false) {
+    const doc = await this.formatterService.urlToPdf(url, data, extended);
+    return doc;
+  }
+
   async googleDocsToPdf(
     docId: string,
     data?: Record<string, any>,

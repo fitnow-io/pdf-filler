@@ -14,6 +14,7 @@ import { ApiBearerGuard } from 'src/guards';
 import { Logger } from 'winston';
 import { ApiService } from './api.service';
 import { FormatGoogleDocxDto } from './dto';
+import { FormatUrlDto } from './dto/format-url.dto';
 
 @UseGuards(ApiBearerGuard)
 @Controller('api/v1')
@@ -39,6 +40,13 @@ export class ApiController {
       body.data,
       body.extended,
     );
+  }
+
+  @Post('url-to-pdf')
+  @Header('Content-Type', 'application/pdf')
+  @Header('Content-Disposition', 'attachment; filename="result.pdf"')
+  urlToPdf(@Body() body: FormatUrlDto) {
+    return this.apiService.urlToPdf(body.url, body.data, body.extended);
   }
 
   @Post('googledocs-to-docx')
