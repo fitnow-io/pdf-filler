@@ -7,6 +7,7 @@ import {
   please,
   set,
   filename,
+  timeout,
 } from 'gotenberg-js-client';
 import {
   GotenbergConfigType,
@@ -27,7 +28,7 @@ export class ConverterService {
       gotenberg(this.config.baseUrl),
       convert,
       office,
-      set(filename('result.pdf')),
+      set(filename('result.pdf'), timeout(30)),
       please,
     );
     const pdf = await toPdf(['file.docx', file]);
