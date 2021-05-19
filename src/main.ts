@@ -22,6 +22,9 @@ async function bootstrap() {
   const appLogger: AppLogger = app.get(AppLogger);
   app.useGlobalInterceptors(new ErrorsInterceptor(appLogger));
 
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  app.register(require('fastify-multipart'));
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
