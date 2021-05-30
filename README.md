@@ -8,8 +8,8 @@ PDF Filler is microservice for filling and converting DOCX files to PDF. It uses
 
 ### Documentation
 
-- https://pdf.fitnow.io/api/v1/swagger
-- http://localhost:5000/api/v1/swagger (in development mode)
+- https://pdf.fitnow.io/api/v1/docx
+- http://localhost:5000/api/v1/docx (in development mode)
 
 ### Development
 
