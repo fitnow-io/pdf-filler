@@ -12,6 +12,7 @@ import {
 } from './modules/app-config/modules';
 import { AppModule } from './modules/app/app.module';
 import { AppLogger } from './modules/logger/app-logger.service';
+import { createSwagger } from './utils';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -21,6 +22,7 @@ async function bootstrap() {
 
   const appLogger: AppLogger = app.get(AppLogger);
   app.useGlobalInterceptors(new ErrorsInterceptor(appLogger));
+  createSwagger(app);
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   app.register(require('fastify-multipart'));
